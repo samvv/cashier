@@ -1,11 +1,11 @@
 from typing import Annotated
 from sqlmodel import Session
-from fastapi import Depends
+from fastapi import Depends, Request
 
-from cashier.core import engine
 
-def get_session():
-    with Session(engine) as session:
+def get_session(req: Request):
+    with Session(req.app.state.engine) as session:
         yield session
+
 
 type SessionDep = Annotated[Session, Depends(get_session)]

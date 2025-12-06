@@ -1,3 +1,4 @@
+from decimal import Decimal
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import SQLModel, Session
@@ -30,7 +31,13 @@ def client_fixture(session: Session):
 @pytest.fixture(name="data", autouse=True)
 def data_fixture(session: Session):
     products = [
-        Product(name='Product Test 1', price=10.0, member_price=0.2, ean='2052552', img=None),
+        Product(
+            name='Product Test 1',
+            stock=5,
+            price=Decimal(10),
+            ean='2052552',
+            image_path=None,
+        ),
     ]
     for product in products:
         session.add(product)

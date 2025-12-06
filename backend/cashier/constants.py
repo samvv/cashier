@@ -6,7 +6,7 @@ Name of the application in short lowercase format.
 This name will be used in the environment variables.
 """
 
-DEVELOPMENT: bool = False
+IS_DEBUG: bool = False
 """
 If enabled, activate extra logging procedures and debugging facilities.
 """
